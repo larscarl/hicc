@@ -3,3 +3,6 @@
 
 # Miscellaneous
 unpublished/
+
+# Environment
+.env
