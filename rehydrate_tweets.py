@@ -50,7 +50,7 @@ def main(inp, outp):
     # Worklist: ID present AND msg is NaN or empty string
     needs_mask = df["_tweet_id"].notna() & (df["msg"].isna() | (df["msg"] == ""))
     needs = df.loc[needs_mask]
-    todo_ids = sorted({int(tid) for tid in needs["_tweet_id"]})
+    todo_ids = sorted({tid for tid in needs["_tweet_id"]})
     print(f"Tweets to fetch: {len(todo_ids)}")
 
     for i in range(0, len(todo_ids), BATCH_SIZE):
@@ -80,7 +80,7 @@ def main(inp, outp):
         if resp and resp.data:
             for tw in resp.data:
                 # tw.id can be int or str depending on tweepy version
-                tid = int(getattr(tw, "id"))
+                tid = str(getattr(tw, "id"))
                 id_to_text[tid] = tw.text
 
         # Fill texts for found tweets
@@ -88,7 +88,7 @@ def main(inp, outp):
             df["msg"].astype(str).str.len() == 0
         )
         # Use map via a temporary Series
-        to_fill = df.loc[mask_batch, "_tweet_id"].astype(int).map(id_to_text).fillna("")
+        to_fill = df.loc[mask_batch, "_tweet_id"].map(id_to_text).fillna("")
         df.loc[mask_batch, "msg"] = to_fill.values
 
         # OPTIONAL: mark unretrieved IDs from this batch as processed (empty string already),
