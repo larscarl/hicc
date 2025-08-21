@@ -19,7 +19,7 @@ HICC pairs German social-media comments with their **conversational context** (r
 ## Files
 - `hicc_dataset.csv` — core table (Post IDs/URLs, annotations, scores, model verdicts).
 - `rehydrate_tweets.py` — utility to reconstruct tweet text into a working copy (**see Quickstart**).
-- `paper/HICC.pdf` — camera-ready PDF of the KONVENS 2025 paper.
+- `paper/HICC.pdf` — camera-ready PDF of the paper accepted at KONVENS 2025 for an oral presentation.
 
 **Policy note (X / formerly Twitter):** Redistribution must be limited to IDs and derived metadata. Content must be rehydrated via the official API subject to access rights. Please follow the current X policy linked above.
 
@@ -43,20 +43,20 @@ Each row is a post in a reconstructed thread.
 
 **LLM verdicts (binary) + rationales (free text), per task and context:**  
 - Tasks: `hate_…`, `toxicity_…`
-- Providers: `openai` (e.g., GPT-4o-mini), `xai` (Grok-3-mini), `claude` (Claude 3 Haiku)
+- Providers: `openai` (GPT-4o-mini), `xai` (Grok-3-mini), `claude` (Claude 3 Haiku)
 - Contexts:
   - `_no_context_…` (target text only)
   - `_with_original_…` (root + target)
   - `_with_full_context_…` (root + prior direct replies + target)
 - Example fields:
   - `hate_openai_no_context_verdict` ∈ {0,1}
-  - `hate_openai_no_context_reasoning` (string)
   - `toxicity_claude_with_full_context_verdict` ∈ {0,1}
+  - `hate_xai_with_original_reasoning` (string)
 
 See paper for prompting and model details.
 
-## Quickstart: rehydrate tweet text
-Rehydration fills a `msg` column with tweet text in a working copy of the CSV. Distribution of text is not included in `hicc_dataset.csv` due to X policy.
+## Quickstart: reconstruction of tweet texts
+`rehydrate_tweets.py` fills a `msg` column with tweet text in a working copy of the CSV. Distribution of text is not included in `hicc_dataset.csv` due to [X policy](https://developer.x.com/en/support/x-api/policy).
 
 ### 1) Install
 ```bash
