@@ -2,8 +2,8 @@
 .DS_Store
 
 # Miscellaneous
-unpublished/
-rehydrated/
+dataset_unpublished/
+dataset_rehydrated/
 
 # Environment
 .env
