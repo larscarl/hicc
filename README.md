@@ -63,7 +63,7 @@ See paper for prompting and model details.
 ```bash
 python -m venv .venv
 source .venv/bin/activate
-pip install tweepy python-dotenv pandas
+pip install -r requirements.txt
 ```
 
 ### 2) Set credentials
