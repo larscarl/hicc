@@ -68,7 +68,7 @@ pip install -r requirements.txt
 
 ### 2) Set credentials
 
-Create a `.env` file:
+Create a `.env` file (or use the template `.env.example`):
 ```
 TWITTER_BEARER_TOKEN = "YOUR_TOKEN_HERE"
 ```
