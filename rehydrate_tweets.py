@@ -91,10 +91,6 @@ def main(inp, outp):
         to_fill = df.loc[mask_batch, "_tweet_id"].map(id_to_text).fillna("")
         df.loc[mask_batch, "msg"] = to_fill.values
 
-        # OPTIONAL: mark unretrieved IDs from this batch as processed (empty string already),
-        # so re-runs won’t hammer the API. If you prefer retrying later, comment this out.
-        # (No extra column added to keep things concise.)
-
         # Checkpoint after each batch
         df.drop(columns=["_tweet_id"], inplace=True)
         df.to_csv(outp, index=False)
