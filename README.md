@@ -18,6 +18,7 @@ HICC pairs German social-media comments with their **conversational context** (r
 
 ## Files
 - `hicc_dataset.csv` — core table (Post IDs/URLs, annotations, scores, model verdicts).
+- `evaluate_recall.py` – a Streamlit app that reads `hicc_dataset.csv` and provides analyses of recall and label flips (run with `streamlit run evaluate_recall.py`).
 - `rehydrate_tweets.py` — utility to reconstruct tweet text into a working copy (**see Quickstart**).
 - `paper/HICC.pdf` — camera-ready PDF of the paper accepted at KONVENS 2025 for an oral presentation.
 
